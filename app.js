@@ -109,13 +109,14 @@ let convertToLarger = (n, d) => Math.trunc(n/d);
  */
 
 let getSecondFromMs   = num => convertToLarger(num, 1000);
+let getMinuteFromMs   = num => convertToLarger(getSecondFromMs(num),60);
+let getHourFromMs     = num => convertToLarger(getMinuteFromMS(num), 60);
 
-let getMinuteFromMs   = num => convertToLarger(num, 60,000);
-let getHourFromMs     = num => convertToLarger(num, 3,600,000);
+let remainingAfterConvert = (n, d) => n%d;
 
-let getSecondFromDays = num => 0;
-let getMinuteFromDays = num => 0;
-let getHourFromDays   = num => 0;
+let getSecondFromDays = num => remainingAfterConvert(num, 86400);
+let getMinuteFromDays = num => remainingAfterConvert(getSecondFromDays(num), 60);
+let getHourFromDays   = num => remainingAfterConvert(getMinuteFromDays(num), 60);
 
 /* END REPLACEMENT FOR ASSIGNMENT 2 */
 
